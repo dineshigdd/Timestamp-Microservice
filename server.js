@@ -20,14 +20,14 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-
+var date_string = '';
 app.get("/api/timestamp/:date_string?", function (req, res) {
   console.log("test Date:" + req.params.date_string);
   
-  res.json(
-            // {unix:new Date(req.params.date_string).getTime()},
-            {utc:new Date(req.params.date_string).toUTCString()}
-          );
+  if( req.params.date_string.isEmpty())
+  res.json( { unix:new Date(req.params.date_string).getTime(),
+              utc:new Date(req.params.date_string).toUTCString().toString()
+            } );
 });
 
 

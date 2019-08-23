@@ -23,19 +23,19 @@ app.get("/", function (req, res) {
 
 app.get("/api/timestamp/:date_string?", function (req, res) {
     
-//   if( req.params.date_string !== undefined){
-//       res.json( { unix:new Date(req.params.date_string).getTime(),
-//                   utc:new Date(req.params.date_string).toUTCString().toString()
-//                 } 
-//               );
-//   }else{
-//       res.json( { unix:new Date().getTime(),
-//                   utc:new Date().toUTCString().toString()
-//                 } 
-//                );
+  if( req.params.date_string !== undefined){
+      res.json( { unix:new Date(req.params.date_string).getTime(),
+                  utc:new Date(req.params.date_string).toUTCString().toString()
+                } 
+              );
+  }else{
+      res.json( { unix:new Date().getTime(),
+                  utc:new Date().toUTCString().toString()
+                } 
+               );
       
                 
-//   }
+  }
   
 });
 

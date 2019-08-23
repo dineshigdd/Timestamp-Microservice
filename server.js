@@ -20,8 +20,9 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+var date_string = 0;
+app.get("/api/timestamp/:"+ date_string+ "?", function (req, res) {
+  res.json({unix: new Date(date_string).getTime() / 1000});
 });
 
 

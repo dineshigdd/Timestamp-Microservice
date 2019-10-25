@@ -22,10 +22,11 @@ app.get("/", function (req, res) {
 // your first API endpoint... 
 
 app.get("/api/timestamp/:date_string?", function (req, res) {
-    console.log(req.params)
+    
   if( req.params.date_string !== undefined){
         var utcSecond = Number(req.params.date_string);
-        if( !isNaN(utcSecond) ){          
+        if( !isNaN(utcSecond) ){   
+          
           var date = new Date(0); //  0 there is to set the date to the epoch
           date.setUTCSeconds(utcSecond);
           res.json( 
@@ -33,13 +34,17 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
               utc:new Date(date).toUTCString().toString()
             });
         }else{
-      
+          let date = new Date(req.params.date_string).getTime();
+          if( isNaN(date)){
+            res.json({"error":"Invalid Date"});
+          }else{
           res.json( { unix:new Date(req.params.date_string).getTime(),
                       utc:new Date(req.params.date_string).toUTCString().toString()
                     } 
                   );
+          }
         }
-  }else{
+  }else {
       res.json( { unix:new Date().getTime(),
                   utc:new Date().toUTCString().toString()
                 } 
